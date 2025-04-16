@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Letter Boxed Solver</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 40px;
+      max-width: 600px;
+      margin: auto;
+    }
+    input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      font-size: 1.2em;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 1.1em;
+    }
+    ul {
+      margin-top: 20px;
+      padding-left: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>NYT Letter Boxed Solver</h1>
+  <form method="post">
+    <label for="letters">Enter 12 letters (clockwise, no spaces):</label><br>
+    <input type="text" id="letters" name="letters" value="{{ letters }}" maxlength="12" required>
+    <br>
+    <button type="submit">Solve</button>
+  </form>
+
+  {% if results %}
+    <h2>Top Solutions</h2>
+    <ul>
+      {% for combo in results %}
+        <li>{{ combo[0] }} → {{ combo[1] }} ({{ combo[0]|length + combo[1]|length }} letters)</li>
+      {% endfor %}
+    </ul>
+  {% elif letters %}
+    <p>No solution found.</p>
+  {% endif %}
+</body>
+</html>
